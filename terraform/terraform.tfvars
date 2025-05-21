@@ -1,5 +1,5 @@
 aws_region  = "us-east-1"
-environment = "dev"
+environment = "prod"
 
 # S3 buckets configuration
 source_bucket_name = "raw-data"
