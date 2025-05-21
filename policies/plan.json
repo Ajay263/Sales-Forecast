@@ -1,0 +1,1665 @@
+{
+    "format_version": "1.2",
+    "terraform_version": "1.12.0",
+
+    "resource_changes": [
+        {
+            "address": "module.dynamodb.aws_dynamodb_table.etl_tracking",
+            "module_address": "module.dynamodb",
+            "mode": "managed",
+            "type": "aws_dynamodb_table",
+            "name": "etl_tracking",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "attribute": [
+                        {
+                            "name": "filter_column",
+                            "type": "S"
+                        },
+                        {
+                            "name": "table_name",
+                            "type": "S"
+                        }
+                    ],
+                    "billing_mode": "PAY_PER_REQUEST",
+                    "deletion_protection_enabled": null,
+                    "global_secondary_index": [],
+                    "hash_key": "table_name",
+                    "import_table": [],
+                    "local_secondary_index": [],
+                    "name": "dev-etl_logs",
+                    "on_demand_throughput": [],
+                    "point_in_time_recovery": [
+                        {
+                            "enabled": true
+                        }
+                    ],
+                    "range_key": "filter_column",
+                    "replica": [],
+                    "restore_date_time": null,
+                    "restore_source_name": null,
+                    "restore_source_table_arn": null,
+                    "restore_to_latest_time": null,
+                    "stream_enabled": null,
+                    "table_class": null,
+                    "tags": {
+                        "Environment": "dev",
+                        "Name": "dev-etl_logs"
+                    },
+                    "tags_all": {
+                        "Environment": "dev",
+                        "Name": "dev-etl_logs"
+                    },
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "attribute": [
+                        {},
+                        {}
+                    ],
+                    "global_secondary_index": [],
+                    "id": true,
+                    "import_table": [],
+                    "local_secondary_index": [],
+                    "on_demand_throughput": [],
+                    "point_in_time_recovery": [
+                        {
+                            "recovery_period_in_days": true
+                        }
+                    ],
+                    "read_capacity": true,
+                    "replica": [],
+                    "server_side_encryption": true,
+                    "stream_arn": true,
+                    "stream_label": true,
+                    "stream_view_type": true,
+                    "tags": {},
+                    "tags_all": {},
+                    "ttl": true,
+                    "write_capacity": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "attribute": [
+                        {},
+                        {}
+                    ],
+                    "global_secondary_index": [],
+                    "import_table": [],
+                    "local_secondary_index": [],
+                    "on_demand_throughput": [],
+                    "point_in_time_recovery": [
+                        {}
+                    ],
+                    "replica": [],
+                    "server_side_encryption": [],
+                    "tags": {},
+                    "tags_all": {},
+                    "ttl": []
+                }
+            }
+        },
+        {
+            "address": "module.glue.aws_glue_catalog_database.database",
+            "module_address": "module.glue",
+            "mode": "managed",
+            "type": "aws_glue_catalog_database",
+            "name": "database",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "description": "Database for dev environment data",
+                    "federated_database": [],
+                    "name": "nexabrand-dev-database",
+                    "parameters": null,
+                    "tags": null,
+                    "target_database": []
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "catalog_id": true,
+                    "create_table_default_permission": true,
+                    "federated_database": [],
+                    "id": true,
+                    "location_uri": true,
+                    "tags_all": true,
+                    "target_database": []
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "create_table_default_permission": [],
+                    "federated_database": [],
+                    "tags_all": {},
+                    "target_database": []
+                }
+            }
+        },
+        {
+            "address": "module.glue.aws_glue_crawler.s3_crawler",
+            "module_address": "module.glue",
+            "mode": "managed",
+            "type": "aws_glue_crawler",
+            "name": "s3_crawler",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "catalog_target": [],
+                    "classifiers": null,
+                    "configuration": "{\"CrawlerOutput\":{\"Partitions\":{\"AddOrUpdateBehavior\":\"InheritFromTable\"}},\"Version\":1}",
+                    "database_name": "nexabrand-dev-database",
+                    "delta_target": [],
+                    "description": null,
+                    "dynamodb_target": [],
+                    "hudi_target": [],
+                    "iceberg_target": [],
+                    "jdbc_target": [],
+                    "lake_formation_configuration": [],
+                    "lineage_configuration": [],
+                    "mongodb_target": [],
+                    "name": "nexabrand-dev-s3-crawler",
+                    "recrawl_policy": [],
+                    "s3_target": [
+                        {
+                            "connection_name": null,
+                            "dlq_event_queue_arn": null,
+                            "event_queue_arn": null,
+                            "exclusions": null,
+                            "path": "s3://nexabrand-dev-raw-data/",
+                            "sample_size": null
+                        }
+                    ],
+                    "schedule": null,
+                    "schema_change_policy": [
+                        {
+                            "delete_behavior": "LOG",
+                            "update_behavior": "UPDATE_IN_DATABASE"
+                        }
+                    ],
+                    "security_configuration": null,
+                    "table_prefix": null,
+                    "tags": {
+                        "Environment": "dev",
+                        "Service": "glue"
+                    },
+                    "tags_all": {
+                        "Environment": "dev",
+                        "Service": "glue"
+                    }
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "catalog_target": [],
+                    "delta_target": [],
+                    "dynamodb_target": [],
+                    "hudi_target": [],
+                    "iceberg_target": [],
+                    "id": true,
+                    "jdbc_target": [],
+                    "lake_formation_configuration": [],
+                    "lineage_configuration": [],
+                    "mongodb_target": [],
+                    "recrawl_policy": [],
+                    "role": true,
+                    "s3_target": [
+                        {}
+                    ],
+                    "schema_change_policy": [
+                        {}
+                    ],
+                    "tags": {},
+                    "tags_all": {}
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "catalog_target": [],
+                    "delta_target": [],
+                    "dynamodb_target": [],
+                    "hudi_target": [],
+                    "iceberg_target": [],
+                    "jdbc_target": [],
+                    "lake_formation_configuration": [],
+                    "lineage_configuration": [],
+                    "mongodb_target": [],
+                    "recrawl_policy": [],
+                    "s3_target": [
+                        {}
+                    ],
+                    "schema_change_policy": [
+                        {}
+                    ],
+                    "tags": {},
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.glue.aws_glue_job.delta_lake_job",
+            "module_address": "module.glue",
+            "mode": "managed",
+            "type": "aws_glue_job",
+            "name": "delta_lake_job",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "command": [
+                        {
+                            "name": "glueetl",
+                            "python_version": "3",
+                            "script_location": "s3://nexabrand-dev-code/scripts/delta-lake-transformation.py"
+                        }
+                    ],
+                    "connections": null,
+                    "default_arguments": {
+                        "--conf": "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog",
+                        "--enable-metrics": "true",
+                        "--extra-jars": "s3://nexabrand-dev-code/jars/delta-core_2.12-1.0.0.jar",
+                        "--job-bookmark-option": "job-bookmark-disable",
+                        "--job-language": "python",
+                        "--source-bucket": "nexabrand-dev-raw-data",
+                        "--target-bucket": "nexabrand-dev-delta-lake"
+                    },
+                    "description": null,
+                    "execution_class": null,
+                    "execution_property": [
+                        {
+                            "max_concurrent_runs": 1
+                        }
+                    ],
+                    "glue_version": "3.0",
+                    "job_run_queuing_enabled": null,
+                    "maintenance_window": null,
+                    "max_retries": 1,
+                    "name": "nexabrand-dev-delta-lake-transformation",
+                    "non_overridable_arguments": null,
+                    "number_of_workers": 2,
+                    "security_configuration": null,
+                    "source_control_details": [],
+                    "tags": {
+                        "Environment": "dev",
+                        "Service": "glue"
+                    },
+                    "tags_all": {
+                        "Environment": "dev",
+                        "Service": "glue"
+                    },
+                    "timeout": 2880,
+                    "worker_type": "G.1X"
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "command": [
+                        {
+                            "runtime": true
+                        }
+                    ],
+                    "default_arguments": {},
+                    "execution_property": [
+                        {}
+                    ],
+                    "id": true,
+                    "max_capacity": true,
+                    "notification_property": true,
+                    "role_arn": true,
+                    "source_control_details": [],
+                    "tags": {},
+                    "tags_all": {}
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "command": [
+                        {}
+                    ],
+                    "default_arguments": {},
+                    "execution_property": [
+                        {}
+                    ],
+                    "notification_property": [],
+                    "source_control_details": [],
+                    "tags": {},
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.glue.aws_glue_job.postgres_extraction_job",
+            "module_address": "module.glue",
+            "mode": "managed",
+            "type": "aws_glue_job",
+            "name": "postgres_extraction_job",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "command": [
+                        {
+                            "name": "pythonshell",
+                            "python_version": "3",
+                            "script_location": "s3://nexabrand-dev-code/scripts/postgres-extraction-job.py"
+                        }
+                    ],
+                    "connections": null,
+                    "default_arguments": {
+                        "--enable-metrics": "true",
+                        "--job-bookmark-option": "job-bookmark-disable",
+                        "--job-language": "python"
+                    },
+                    "description": null,
+                    "execution_class": null,
+                    "execution_property": [
+                        {
+                            "max_concurrent_runs": 1
+                        }
+                    ],
+                    "glue_version": "3.0",
+                    "job_run_queuing_enabled": null,
+                    "maintenance_window": null,
+                    "max_retries": 1,
+                    "name": "nexabrand-dev-postgres-extraction",
+                    "non_overridable_arguments": null,
+                    "number_of_workers": 2,
+                    "security_configuration": null,
+                    "source_control_details": [],
+                    "tags": {
+                        "Environment": "dev",
+                        "Service": "glue"
+                    },
+                    "tags_all": {
+                        "Environment": "dev",
+                        "Service": "glue"
+                    },
+                    "timeout": 2880,
+                    "worker_type": "G.1X"
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "command": [
+                        {
+                            "runtime": true
+                        }
+                    ],
+                    "default_arguments": {},
+                    "execution_property": [
+                        {}
+                    ],
+                    "id": true,
+                    "max_capacity": true,
+                    "notification_property": true,
+                    "role_arn": true,
+                    "source_control_details": [],
+                    "tags": {},
+                    "tags_all": {}
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "command": [
+                        {}
+                    ],
+                    "default_arguments": {},
+                    "execution_property": [
+                        {}
+                    ],
+                    "notification_property": [],
+                    "source_control_details": [],
+                    "tags": {},
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.glue.aws_s3_object.delta_lake_jar",
+            "module_address": "module.glue",
+            "mode": "managed",
+            "type": "aws_s3_object",
+            "name": "delta_lake_jar",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bucket": "nexabrand-dev-code",
+                    "cache_control": null,
+                    "checksum_algorithm": null,
+                    "content": null,
+                    "content_base64": null,
+                    "content_disposition": null,
+                    "content_encoding": null,
+                    "content_language": null,
+                    "force_destroy": false,
+                    "key": "jars/delta-core_2.12-1.0.0.jar",
+                    "metadata": null,
+                    "object_lock_legal_hold_status": null,
+                    "object_lock_mode": null,
+                    "object_lock_retain_until_date": null,
+                    "override_provider": [],
+                    "source": "modules/glue/jars/delta-core_2.12-1.0.0.jar",
+                    "source_hash": null,
+                    "tags": null,
+                    "website_redirect": null
+                },
+                "after_unknown": {
+                    "acl": true,
+                    "arn": true,
+                    "bucket_key_enabled": true,
+                    "checksum_crc32": true,
+                    "checksum_crc32c": true,
+                    "checksum_crc64nvme": true,
+                    "checksum_sha1": true,
+                    "checksum_sha256": true,
+                    "content_type": true,
+                    "etag": true,
+                    "id": true,
+                    "kms_key_id": true,
+                    "override_provider": [],
+                    "server_side_encryption": true,
+                    "storage_class": true,
+                    "tags_all": true,
+                    "version_id": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "override_provider": [],
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.glue.aws_s3_object.delta_lake_script",
+            "module_address": "module.glue",
+            "mode": "managed",
+            "type": "aws_s3_object",
+            "name": "delta_lake_script",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bucket": "nexabrand-dev-code",
+                    "cache_control": null,
+                    "checksum_algorithm": null,
+                    "content": "from pyspark.sql import SparkSession\r\nfrom pyspark.sql.functions import col, from_json, schema_of_json\r\nfrom pyspark.sql.types import StructType, StringType\r\nfrom delta.tables import DeltaTable\r\nimport sys\r\nimport boto3\r\nimport json\r\n\r\n# Initialize the Spark session with Delta Lake configuration\r\nspark = SparkSession.builder \\\r\n    .appName(\"Delta Lake ETL Process\") \\\r\n    .config(\"spark.sql.extensions\", \"io.delta.sql.DeltaSparkSessionExtension\") \\\r\n    .config(\"spark.sql.catalog.spark_catalog\", \"org.apache.spark.sql.delta.catalog.DeltaCatalog\") \\\r\n    .config(\"spark.databricks.delta.retentionDurationCheck.enabled\", \"false\") \\\r\n    .getOrCreate()\r\n\r\n# Log level\r\nspark.sparkContext.setLogLevel(\"INFO\")\r\n\r\n# Define S3 bucket paths\r\nsource_bucket = \"nexabrand-dev-raw-data\"\r\ntarget_bucket = \"nexabrand-dev-delta-lake\"\r\n\r\n# Input and output paths\r\ninput_path = f\"s3://{source_bucket}/raw_landing_zone/orders/data.json\"\r\noutput_path = f\"s3://{target_bucket}/delta_lake/orders\"\r\n\r\ndef main():\r\n    try:\r\n        print(f\"Reading data from {input_path}\")\r\n        \r\n        # Read the JSON file from S3\r\n        # First, read the raw data as a string to determine schema\r\n        raw_df = spark.read.text(input_path)\r\n        \r\n        if raw_df.count() == 0:\r\n            print(\"No data found in source location\")\r\n            return\r\n            \r\n        # Parse the JSON string\r\n        json_str = raw_df.first()[0]\r\n        parsed_data = json.loads(json_str)\r\n        \r\n        # Create a schema from the first record\r\n        if len(parsed_data) \u003e 0:\r\n            schema = spark.read.json(spark.sparkContext.parallelize([json_str])).schema\r\n            \r\n            # Now read with the inferred schema\r\n            df = spark.read.schema(schema).json(input_path)\r\n            \r\n            print(f\"Read {df.count()} records from source\")\r\n            \r\n            # Check if Delta table exists\r\n            delta_table_exists = DeltaTable.isDeltaTable(spark, output_path)\r\n            \r\n            if delta_table_exists:\r\n                print(f\"Delta table exists at {output_path}, performing upsert operation\")\r\n                \r\n                # Load the existing Delta table\r\n                delta_table = DeltaTable.forPath(spark, output_path)\r\n                \r\n                # Get the join key - using order_id as the primary key\r\n                join_key = \"order_id\"\r\n                \r\n                # Perform UPSERT (MERGE) operation\r\n                delta_table.alias(\"target\").merge(\r\n                    df.alias(\"source\"),\r\n                    f\"target.{join_key} = source.{join_key}\"\r\n                ).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()\r\n                \r\n                print(f\"Upsert completed successfully to {output_path}\")\r\n            else:\r\n                print(f\"Delta table does not exist at {output_path}, creating new table\")\r\n                \r\n                # Write the data as a new Delta table\r\n                df.write.format(\"delta\").mode(\"overwrite\").save(output_path)\r\n                \r\n                print(f\"Created new Delta table at {output_path}\")\r\n                \r\n            # Display table stats\r\n            print(\"Table statistics:\")\r\n            spark.read.format(\"delta\").load(output_path).printSchema()\r\n            print(f\"Total records: {spark.read.format('delta').load(output_path).count()}\")\r\n            \r\n        else:\r\n            print(\"Parsed JSON data is empty\")\r\n            \r\n    except Exception as e:\r\n        print(f\"Error in Delta Lake transformation: {str(e)}\")\r\n        raise e\r\n    finally:\r\n        # Stop the Spark session\r\n        spark.stop()\r\n        print(\"Spark session stopped\")\r\n\r\nif __name__ == \"__main__\":\r\n    main()",
+                    "content_base64": null,
+                    "content_disposition": null,
+                    "content_encoding": null,
+                    "content_language": null,
+                    "content_type": "text/x-python",
+                    "force_destroy": false,
+                    "key": "scripts/delta-lake-transformation.py",
+                    "metadata": null,
+                    "object_lock_legal_hold_status": null,
+                    "object_lock_mode": null,
+                    "object_lock_retain_until_date": null,
+                    "override_provider": [],
+                    "source": null,
+                    "source_hash": null,
+                    "tags": null,
+                    "website_redirect": null
+                },
+                "after_unknown": {
+                    "acl": true,
+                    "arn": true,
+                    "bucket_key_enabled": true,
+                    "checksum_crc32": true,
+                    "checksum_crc32c": true,
+                    "checksum_crc64nvme": true,
+                    "checksum_sha1": true,
+                    "checksum_sha256": true,
+                    "etag": true,
+                    "id": true,
+                    "kms_key_id": true,
+                    "override_provider": [],
+                    "server_side_encryption": true,
+                    "storage_class": true,
+                    "tags_all": true,
+                    "version_id": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "override_provider": [],
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.glue.aws_s3_object.postgres_extraction_script",
+            "module_address": "module.glue",
+            "mode": "managed",
+            "type": "aws_s3_object",
+            "name": "postgres_extraction_script",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bucket": "nexabrand-dev-code",
+                    "cache_control": null,
+                    "checksum_algorithm": null,
+                    "content_base64": null,
+                    "content_disposition": null,
+                    "content_encoding": null,
+                    "content_language": null,
+                    "content_type": "text/x-python",
+                    "force_destroy": false,
+                    "key": "scripts/postgres-extraction-job.py",
+                    "metadata": null,
+                    "object_lock_legal_hold_status": null,
+                    "object_lock_mode": null,
+                    "object_lock_retain_until_date": null,
+                    "override_provider": [],
+                    "source": null,
+                    "source_hash": null,
+                    "tags": null,
+                    "website_redirect": null
+                },
+                "after_unknown": {
+                    "acl": true,
+                    "arn": true,
+                    "bucket_key_enabled": true,
+                    "checksum_crc32": true,
+                    "checksum_crc32c": true,
+                    "checksum_crc64nvme": true,
+                    "checksum_sha1": true,
+                    "checksum_sha256": true,
+                    "content": true,
+                    "etag": true,
+                    "id": true,
+                    "kms_key_id": true,
+                    "override_provider": [],
+                    "server_side_encryption": true,
+                    "storage_class": true,
+                    "tags_all": true,
+                    "version_id": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "content": true,
+                    "override_provider": [],
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_policy.dynamodb_access",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_policy",
+            "name": "dynamodb_access",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "description": "Policy for DynamoDB table access",
+                    "name": "nexabrand-dev-dynamodb-access",
+                    "path": "/",
+                    "tags": null
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "attachment_count": true,
+                    "id": true,
+                    "name_prefix": true,
+                    "policy": true,
+                    "policy_id": true,
+                    "tags_all": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_policy.rds_access",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_policy",
+            "name": "rds_access",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "description": "Policy for RDS instance access",
+                    "name": "nexabrand-dev-rds-access",
+                    "path": "/",
+                    "tags": null
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "attachment_count": true,
+                    "id": true,
+                    "name_prefix": true,
+                    "policy": true,
+                    "policy_id": true,
+                    "tags_all": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_policy.s3_access",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_policy",
+            "name": "s3_access",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "description": "Policy for S3 bucket access",
+                    "name": "nexabrand-dev-s3-access",
+                    "path": "/",
+                    "tags": null
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "attachment_count": true,
+                    "id": true,
+                    "name_prefix": true,
+                    "policy": true,
+                    "policy_id": true,
+                    "tags_all": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_role.glue_role",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_role",
+            "name": "glue_role",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"glue.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+                    "description": null,
+                    "force_detach_policies": false,
+                    "max_session_duration": 3600,
+                    "name": "nexabrand-dev-glue-role",
+                    "path": "/",
+                    "permissions_boundary": null,
+                    "tags": {
+                        "Environment": "dev"
+                    },
+                    "tags_all": {
+                        "Environment": "dev"
+                    }
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "create_date": true,
+                    "id": true,
+                    "inline_policy": true,
+                    "managed_policy_arns": true,
+                    "name_prefix": true,
+                    "tags": {},
+                    "tags_all": {},
+                    "unique_id": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "inline_policy": [],
+                    "managed_policy_arns": [],
+                    "tags": {},
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_role_policy_attachment.dynamodb_access",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_role_policy_attachment",
+            "name": "dynamodb_access",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "role": "nexabrand-dev-glue-role"
+                },
+                "after_unknown": {
+                    "id": true,
+                    "policy_arn": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {}
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_role_policy_attachment.glue_service",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_role_policy_attachment",
+            "name": "glue_service",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole",
+                    "role": "nexabrand-dev-glue-role"
+                },
+                "after_unknown": {
+                    "id": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {}
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_role_policy_attachment.rds_access",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_role_policy_attachment",
+            "name": "rds_access",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "role": "nexabrand-dev-glue-role"
+                },
+                "after_unknown": {
+                    "id": true,
+                    "policy_arn": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {}
+            }
+        },
+        {
+            "address": "module.iam.aws_iam_role_policy_attachment.s3_access",
+            "module_address": "module.iam",
+            "mode": "managed",
+            "type": "aws_iam_role_policy_attachment",
+            "name": "s3_access",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "role": "nexabrand-dev-glue-role"
+                },
+                "after_unknown": {
+                    "id": true,
+                    "policy_arn": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {}
+            }
+        },
+        {
+            "address": "module.rds.aws_db_instance.postgres",
+            "module_address": "module.rds",
+            "mode": "managed",
+            "type": "aws_db_instance",
+            "name": "postgres",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "allocated_storage": 20,
+                    "allow_major_version_upgrade": null,
+                    "apply_immediately": false,
+                    "auto_minor_version_upgrade": true,
+                    "backup_retention_period": 7,
+                    "backup_window": "03:00-04:00",
+                    "blue_green_update": [],
+                    "copy_tags_to_snapshot": false,
+                    "custom_iam_instance_profile": null,
+                    "customer_owned_ip_enabled": null,
+                    "db_name": "ecom_db",
+                    "dedicated_log_volume": false,
+                    "delete_automated_backups": true,
+                    "deletion_protection": false,
+                    "domain": null,
+                    "domain_auth_secret_arn": null,
+                    "domain_dns_ips": null,
+                    "domain_iam_role_name": null,
+                    "domain_ou": null,
+                    "enabled_cloudwatch_logs_exports": null,
+                    "engine": "postgres",
+                    "engine_version": "13",
+                    "final_snapshot_identifier": null,
+                    "iam_database_authentication_enabled": null,
+                    "identifier": "nexabrand-dev-postgres",
+                    "instance_class": "db.t3.micro",
+                    "maintenance_window": "mon:04:00-mon:05:00",
+                    "manage_master_user_password": null,
+                    "max_allocated_storage": null,
+                    "monitoring_interval": 0,
+                    "parameter_group_name": "default.postgres13",
+                    "password": "YourStrongPasswordHere",
+                    "password_wo": null,
+                    "password_wo_version": null,
+                    "performance_insights_enabled": false,
+                    "publicly_accessible": true,
+                    "replicate_source_db": null,
+                    "restore_to_point_in_time": [],
+                    "s3_import": [],
+                    "skip_final_snapshot": true,
+                    "storage_encrypted": null,
+                    "storage_type": "gp2",
+                    "tags": {
+                        "Environment": "dev",
+                        "Name": "nexabrand-dev-postgres"
+                    },
+                    "tags_all": {
+                        "Environment": "dev",
+                        "Name": "nexabrand-dev-postgres"
+                    },
+                    "timeouts": null,
+                    "upgrade_storage_config": null,
+                    "username": "admin"
+                },
+                "after_unknown": {
+                    "address": true,
+                    "arn": true,
+                    "availability_zone": true,
+                    "backup_target": true,
+                    "blue_green_update": [],
+                    "ca_cert_identifier": true,
+                    "character_set_name": true,
+                    "database_insights_mode": true,
+                    "db_subnet_group_name": true,
+                    "domain_fqdn": true,
+                    "endpoint": true,
+                    "engine_lifecycle_support": true,
+                    "engine_version_actual": true,
+                    "hosted_zone_id": true,
+                    "id": true,
+                    "identifier_prefix": true,
+                    "iops": true,
+                    "kms_key_id": true,
+                    "latest_restorable_time": true,
+                    "license_model": true,
+                    "listener_endpoint": true,
+                    "master_user_secret": true,
+                    "master_user_secret_kms_key_id": true,
+                    "monitoring_role_arn": true,
+                    "multi_az": true,
+                    "nchar_character_set_name": true,
+                    "network_type": true,
+                    "option_group_name": true,
+                    "performance_insights_kms_key_id": true,
+                    "performance_insights_retention_period": true,
+                    "port": true,
+                    "replica_mode": true,
+                    "replicas": true,
+                    "resource_id": true,
+                    "restore_to_point_in_time": [],
+                    "s3_import": [],
+                    "snapshot_identifier": true,
+                    "status": true,
+                    "storage_throughput": true,
+                    "tags": {},
+                    "tags_all": {},
+                    "timezone": true,
+                    "vpc_security_group_ids": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "blue_green_update": [],
+                    "listener_endpoint": [],
+                    "master_user_secret": [],
+                    "password": true,
+                    "password_wo": true,
+                    "replicas": [],
+                    "restore_to_point_in_time": [],
+                    "s3_import": [],
+                    "tags": {},
+                    "tags_all": {},
+                    "vpc_security_group_ids": []
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_kms_alias.s3_kms_alias",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_kms_alias",
+            "name": "s3_kms_alias",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "name": "alias/s3-encryption-key-dev"
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "id": true,
+                    "name_prefix": true,
+                    "target_key_arn": true,
+                    "target_key_id": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {}
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_kms_key.s3_kms_key",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_kms_key",
+            "name": "s3_kms_key",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bypass_policy_lockout_safety_check": false,
+                    "custom_key_store_id": null,
+                    "customer_master_key_spec": "SYMMETRIC_DEFAULT",
+                    "deletion_window_in_days": 7,
+                    "description": "KMS key for S3 bucket encryption",
+                    "enable_key_rotation": true,
+                    "is_enabled": true,
+                    "key_usage": "ENCRYPT_DECRYPT",
+                    "tags": {
+                        "Environment": "dev",
+                        "Purpose": "s3-encryption"
+                    },
+                    "tags_all": {
+                        "Environment": "dev",
+                        "Purpose": "s3-encryption"
+                    },
+                    "timeouts": null,
+                    "xks_key_id": null
+                },
+                "after_unknown": {
+                    "arn": true,
+                    "id": true,
+                    "key_id": true,
+                    "multi_region": true,
+                    "policy": true,
+                    "rotation_period_in_days": true,
+                    "tags": {},
+                    "tags_all": {}
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "tags": {},
+                    "tags_all": {}
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket.code_bucket",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket",
+            "name": "code_bucket",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bucket": "nexabrand-dev-code",
+                    "force_destroy": true,
+                    "tags": null,
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "acceleration_status": true,
+                    "acl": true,
+                    "arn": true,
+                    "bucket_domain_name": true,
+                    "bucket_prefix": true,
+                    "bucket_regional_domain_name": true,
+                    "cors_rule": true,
+                    "grant": true,
+                    "hosted_zone_id": true,
+                    "id": true,
+                    "lifecycle_rule": true,
+                    "logging": true,
+                    "object_lock_configuration": true,
+                    "object_lock_enabled": true,
+                    "policy": true,
+                    "region": true,
+                    "replication_configuration": true,
+                    "request_payer": true,
+                    "server_side_encryption_configuration": true,
+                    "tags_all": true,
+                    "versioning": true,
+                    "website": true,
+                    "website_domain": true,
+                    "website_endpoint": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "cors_rule": [],
+                    "grant": [],
+                    "lifecycle_rule": [],
+                    "logging": [],
+                    "object_lock_configuration": [],
+                    "replication_configuration": [],
+                    "server_side_encryption_configuration": [],
+                    "tags_all": {},
+                    "versioning": [],
+                    "website": []
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket.source_bucket",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket",
+            "name": "source_bucket",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bucket": "nexabrand-dev-raw-data",
+                    "force_destroy": true,
+                    "tags": null,
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "acceleration_status": true,
+                    "acl": true,
+                    "arn": true,
+                    "bucket_domain_name": true,
+                    "bucket_prefix": true,
+                    "bucket_regional_domain_name": true,
+                    "cors_rule": true,
+                    "grant": true,
+                    "hosted_zone_id": true,
+                    "id": true,
+                    "lifecycle_rule": true,
+                    "logging": true,
+                    "object_lock_configuration": true,
+                    "object_lock_enabled": true,
+                    "policy": true,
+                    "region": true,
+                    "replication_configuration": true,
+                    "request_payer": true,
+                    "server_side_encryption_configuration": true,
+                    "tags_all": true,
+                    "versioning": true,
+                    "website": true,
+                    "website_domain": true,
+                    "website_endpoint": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "cors_rule": [],
+                    "grant": [],
+                    "lifecycle_rule": [],
+                    "logging": [],
+                    "object_lock_configuration": [],
+                    "replication_configuration": [],
+                    "server_side_encryption_configuration": [],
+                    "tags_all": {},
+                    "versioning": [],
+                    "website": []
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket.target_bucket",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket",
+            "name": "target_bucket",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "bucket": "nexabrand-dev-delta-lake",
+                    "force_destroy": true,
+                    "tags": null,
+                    "timeouts": null
+                },
+                "after_unknown": {
+                    "acceleration_status": true,
+                    "acl": true,
+                    "arn": true,
+                    "bucket_domain_name": true,
+                    "bucket_prefix": true,
+                    "bucket_regional_domain_name": true,
+                    "cors_rule": true,
+                    "grant": true,
+                    "hosted_zone_id": true,
+                    "id": true,
+                    "lifecycle_rule": true,
+                    "logging": true,
+                    "object_lock_configuration": true,
+                    "object_lock_enabled": true,
+                    "policy": true,
+                    "region": true,
+                    "replication_configuration": true,
+                    "request_payer": true,
+                    "server_side_encryption_configuration": true,
+                    "tags_all": true,
+                    "versioning": true,
+                    "website": true,
+                    "website_domain": true,
+                    "website_endpoint": true
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "cors_rule": [],
+                    "grant": [],
+                    "lifecycle_rule": [],
+                    "logging": [],
+                    "object_lock_configuration": [],
+                    "replication_configuration": [],
+                    "server_side_encryption_configuration": [],
+                    "tags_all": {},
+                    "versioning": [],
+                    "website": []
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_lifecycle_configuration.source_bucket_lifecycle",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_lifecycle_configuration",
+            "name": "source_bucket_lifecycle",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "rule": [
+                        {
+                            "abort_incomplete_multipart_upload": [],
+                            "expiration": [],
+                            "filter": [],
+                            "id": "transition_noncurrent_versions",
+                            "noncurrent_version_expiration": [
+                                {
+                                    "newer_noncurrent_versions": null,
+                                    "noncurrent_days": 365
+                                }
+                            ],
+                            "noncurrent_version_transition": [
+                                {
+                                    "newer_noncurrent_versions": null,
+                                    "noncurrent_days": 30,
+                                    "storage_class": "STANDARD_IA"
+                                },
+                                {
+                                    "newer_noncurrent_versions": null,
+                                    "noncurrent_days": 60,
+                                    "storage_class": "GLACIER"
+                                }
+                            ],
+                            "prefix": "",
+                            "status": "Enabled",
+                            "transition": []
+                        }
+                    ],
+                    "timeouts": null,
+                    "transition_default_minimum_object_size": "all_storage_classes_128K"
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "expected_bucket_owner": true,
+                    "id": true,
+                    "rule": [
+                        {
+                            "abort_incomplete_multipart_upload": [],
+                            "expiration": [],
+                            "filter": [],
+                            "noncurrent_version_expiration": [
+                                {}
+                            ],
+                            "noncurrent_version_transition": [
+                                {},
+                                {}
+                            ],
+                            "transition": []
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "rule": [
+                        {
+                            "abort_incomplete_multipart_upload": [],
+                            "expiration": [],
+                            "filter": [],
+                            "noncurrent_version_expiration": [
+                                {}
+                            ],
+                            "noncurrent_version_transition": [
+                                {},
+                                {}
+                            ],
+                            "transition": []
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_lifecycle_configuration.target_bucket_lifecycle",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_lifecycle_configuration",
+            "name": "target_bucket_lifecycle",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "rule": [
+                        {
+                            "abort_incomplete_multipart_upload": [],
+                            "expiration": [],
+                            "filter": [],
+                            "id": "transition_noncurrent_versions",
+                            "noncurrent_version_expiration": [
+                                {
+                                    "newer_noncurrent_versions": null,
+                                    "noncurrent_days": 365
+                                }
+                            ],
+                            "noncurrent_version_transition": [
+                                {
+                                    "newer_noncurrent_versions": null,
+                                    "noncurrent_days": 30,
+                                    "storage_class": "STANDARD_IA"
+                                },
+                                {
+                                    "newer_noncurrent_versions": null,
+                                    "noncurrent_days": 60,
+                                    "storage_class": "GLACIER"
+                                }
+                            ],
+                            "prefix": "",
+                            "status": "Enabled",
+                            "transition": []
+                        }
+                    ],
+                    "timeouts": null,
+                    "transition_default_minimum_object_size": "all_storage_classes_128K"
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "expected_bucket_owner": true,
+                    "id": true,
+                    "rule": [
+                        {
+                            "abort_incomplete_multipart_upload": [],
+                            "expiration": [],
+                            "filter": [],
+                            "noncurrent_version_expiration": [
+                                {}
+                            ],
+                            "noncurrent_version_transition": [
+                                {},
+                                {}
+                            ],
+                            "transition": []
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "rule": [
+                        {
+                            "abort_incomplete_multipart_upload": [],
+                            "expiration": [],
+                            "filter": [],
+                            "noncurrent_version_expiration": [
+                                {}
+                            ],
+                            "noncurrent_version_transition": [
+                                {},
+                                {}
+                            ],
+                            "transition": []
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_server_side_encryption_configuration.code_bucket_encryption",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_server_side_encryption_configuration",
+            "name": "code_bucket_encryption",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "expected_bucket_owner": null,
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {
+                                    "sse_algorithm": "aws:kms"
+                                }
+                            ],
+                            "bucket_key_enabled": null
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "id": true,
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {
+                                    "kms_master_key_id": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {}
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_server_side_encryption_configuration.source_bucket_encryption",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_server_side_encryption_configuration",
+            "name": "source_bucket_encryption",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "expected_bucket_owner": null,
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {
+                                    "sse_algorithm": "aws:kms"
+                                }
+                            ],
+                            "bucket_key_enabled": null
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "id": true,
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {
+                                    "kms_master_key_id": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {}
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_server_side_encryption_configuration.target_bucket_encryption",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_server_side_encryption_configuration",
+            "name": "target_bucket_encryption",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "expected_bucket_owner": null,
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {
+                                    "sse_algorithm": "aws:kms"
+                                }
+                            ],
+                            "bucket_key_enabled": null
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "id": true,
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {
+                                    "kms_master_key_id": true
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "rule": [
+                        {
+                            "apply_server_side_encryption_by_default": [
+                                {}
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_versioning.code_bucket_versioning",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_versioning",
+            "name": "code_bucket_versioning",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "expected_bucket_owner": null,
+                    "mfa": null,
+                    "versioning_configuration": [
+                        {
+                            "status": "Enabled"
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "id": true,
+                    "versioning_configuration": [
+                        {
+                            "mfa_delete": true
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "versioning_configuration": [
+                        {}
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_versioning.source_bucket_versioning",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_versioning",
+            "name": "source_bucket_versioning",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "expected_bucket_owner": null,
+                    "mfa": null,
+                    "versioning_configuration": [
+                        {
+                            "status": "Enabled"
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "id": true,
+                    "versioning_configuration": [
+                        {
+                            "mfa_delete": true
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "versioning_configuration": [
+                        {}
+                    ]
+                }
+            }
+        },
+        {
+            "address": "module.s3_buckets.aws_s3_bucket_versioning.target_bucket_versioning",
+            "module_address": "module.s3_buckets",
+            "mode": "managed",
+            "type": "aws_s3_bucket_versioning",
+            "name": "target_bucket_versioning",
+            "provider_name": "registry.terraform.io/hashicorp/aws",
+            "change": {
+                "actions": [
+                    "create"
+                ],
+                "before": null,
+                "after": {
+                    "expected_bucket_owner": null,
+                    "mfa": null,
+                    "versioning_configuration": [
+                        {
+                            "status": "Enabled"
+                        }
+                    ]
+                },
+                "after_unknown": {
+                    "bucket": true,
+                    "id": true,
+                    "versioning_configuration": [
+                        {
+                            "mfa_delete": true
+                        }
+                    ]
+                },
+                "before_sensitive": false,
+                "after_sensitive": {
+                    "versioning_configuration": [
+                        {}
+                    ]
+                }
+            }
+        }
+    ],
+
+    "timestamp": "2025-05-21T12:35:35Z",
+    "applyable": true,
+    "complete": true,
+    "errored": false
+}

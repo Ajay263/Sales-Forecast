@@ -35,7 +35,7 @@ resource "aws_glue_crawler" "s3_crawler" {
 resource "aws_s3_object" "postgres_extraction_script" {
   bucket  = var.code_bucket
   key     = "scripts/postgres-extraction-job.py"
-  content = templatefile("${path.module}/scripts/postgres-extraction-job.py.tpl", {
+  content = templatefile("${path.module}/scripts/postgres-extraction-job.py", {
     db_endpoint      = var.db_endpoint
     db_name          = var.db_name
     db_username      = var.db_username
@@ -51,7 +51,7 @@ resource "aws_s3_object" "postgres_extraction_script" {
 resource "aws_s3_object" "delta_lake_script" {
   bucket  = var.code_bucket
   key     = "scripts/delta-lake-transformation.py"
-  content = templatefile("${path.module}/scripts/delta-lake-transformation.py.tpl", {
+  content = templatefile("${path.module}/scripts/delta-lake-transformation.py", {
     source_bucket = var.source_bucket
     target_bucket = var.target_bucket
   })

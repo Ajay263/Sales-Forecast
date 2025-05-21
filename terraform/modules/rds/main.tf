@@ -12,7 +12,7 @@ resource "aws_db_instance" "postgres" {
   parameter_group_name = var.db_parameter_group_name
   
   # Network settings
-  subnet_group_name    = var.db_subnet_group_name
+  db_subnet_group_name    = var.db_subnet_group_name   # This line was fixed
   vpc_security_group_ids = var.vpc_security_group_ids
   publicly_accessible  = true  # Set to false for production
   
