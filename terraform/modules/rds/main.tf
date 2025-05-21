@@ -1,4 +1,5 @@
-# PostgreSQL RDS instance
+# Fix for the RDS username issue
+
 resource "aws_db_instance" "postgres" {
   identifier           = "nexabrand-${var.environment}-postgres"
   allocated_storage    = var.db_allocated_storage
@@ -7,12 +8,12 @@ resource "aws_db_instance" "postgres" {
   engine_version       = "13"
   instance_class       = var.db_instance_class
   db_name              = var.db_name
-  username             = var.db_username
+  username             = "dbadmin"  # Changed from "admin" to "dbadmin"
   password             = var.db_password
   parameter_group_name = var.db_parameter_group_name
   
   # Network settings
-  db_subnet_group_name    = var.db_subnet_group_name   # This line was fixed
+  db_subnet_group_name    = var.db_subnet_group_name
   vpc_security_group_ids = var.vpc_security_group_ids
   publicly_accessible  = true  # Set to false for production
   

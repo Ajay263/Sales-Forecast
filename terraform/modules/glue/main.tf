@@ -59,11 +59,28 @@ resource "aws_s3_object" "delta_lake_script" {
   content_type = "text/x-python"
 }
 
-# Delta Lake JAR file
+# Delta Lake JAR - Using null resource to download the JAR and upload to S3
+resource "null_resource" "download_delta_jar" {
+  provisioner "local-exec" {
+    command = <<-EOT
+      mkdir -p ${path.module}/tmp
+      curl -L https://repo1.maven.org/maven2/io/delta/delta-core_2.12/1.0.0/delta-core_2.12-1.0.0.jar -o ${path.module}/tmp/delta-core_2.12-1.0.0.jar
+    EOT
+  }
+
+  # This ensures the command runs every time to get the latest JAR
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+}
+
+# Upload the downloaded JAR to S3
 resource "aws_s3_object" "delta_lake_jar" {
-  bucket = var.code_bucket
-  key    = "jars/delta-core_2.12-1.0.0.jar"
-  source = "${path.module}/jars/delta-core_2.12-1.0.0.jar"
+  depends_on = [null_resource.download_delta_jar]
+  bucket     = var.code_bucket
+  key        = "jars/delta-core_2.12-1.0.0.jar"
+  source     = "${path.module}/tmp/delta-core_2.12-1.0.0.jar"
+  etag       = filemd5("${path.module}/tmp/delta-core_2.12-1.0.0.jar")
 }
 
 # Glue Job for RDS to S3 extraction
@@ -100,6 +117,7 @@ resource "aws_glue_job" "postgres_extraction_job" {
 
 # Glue Job for Delta Lake transformation
 resource "aws_glue_job" "delta_lake_job" {
+  depends_on        = [aws_s3_object.delta_lake_jar]
   name              = "nexabrand-${var.environment}-delta-lake-transformation"
   role_arn          = var.glue_role_arn
   glue_version      = "3.0"
