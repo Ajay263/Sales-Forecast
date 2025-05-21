@@ -9,9 +9,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "nexabrand-tf-backend-resources"
+    bucket         = "nexabrand-backend-resources"
     key            = "terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "NexabrandsTerraformLocks"
+    dynamodb_table = "NexabrandterraformLocks"
   }
 }
