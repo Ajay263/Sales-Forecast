@@ -9,10 +9,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "nexabrand-tf-backend-resources"
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
-    use_lockfile   = true
+    bucket       = "nexabrand-tf-backend-resources"
+    key          = "terraform.tfstate"
+    region       = "us-east-1"
+    encrypt      = true
+    use_lockfile = true
   }
 }
